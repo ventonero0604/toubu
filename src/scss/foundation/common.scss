@@ -20,9 +20,22 @@ body {
   line-height: normal;
   position: relative;
   line-height: 1.6;
-  color: var(--primary);
-  background: #fdfcf8;
-  font-size: 1.7rem;
+  color: var(--text);
+  background: #f7f7f7;
+  font-size: 1.5rem;
+  background: center / contain repeat-y url('../../img/bg_pc.svg') #f7f7f7;
+  background-position-y: 80rem;
+
+  @include sp {
+    background: center / contain repeat-y url('../../img/bg_sp.svg') #f7f7f7;
+    background-position-y: 60rem;
+  }
+}
+
+.en {
+  font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 main {

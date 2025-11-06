@@ -1,84 +1,37 @@
 @use '../foundation/breakPoint.scss' as *;
 
-// ローディング画面
-.Loading {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background: #bebebe;
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &.hide {
-    animation: loadingHide 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  }
-
-  &_logo {
-    width: 70rem;
-    position: relative;
-
-    @include sp {
-      width: 80%;
-      max-width: 35rem;
-    }
-
-    .logo-base {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: brightness(0.95) contrast(0.9);
-    }
-
-    .logo-white {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      filter: brightness(0) invert(1);
-      clip-path: inset(0 100% 0 0);
-    }
-
-    &.fill {
-      .logo-white {
-        animation: logoFillClip 0.8s linear forwards;
-      }
-    }
-
-    &.slide-up {
-      animation: logoMaskOut 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    }
-  }
-}
-
-@keyframes logoFillClip {
-  0% {
-    clip-path: inset(0 100% 0 0);
-  }
+// フワフワアニメーション
+@keyframes float {
+  0%,
   100% {
-    clip-path: inset(0 0 0 0);
-  }
-}
-
-@keyframes logoMaskOut {
-  0% {
-    clip-path: inset(0 0 0 0);
-  }
-  100% {
-    clip-path: inset(100% 0 0 0);
-  }
-}
-
-@keyframes loadingHide {
-  0% {
     transform: translateY(0);
   }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatSlow {
+  0%,
   100% {
-    transform: translateY(-100%);
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(3deg);
+  }
+}
+
+// obj画像にフワフワアニメーションを適用
+[class*='obj'] {
+  animation: float 3s ease-in-out infinite;
+
+  &:nth-child(even) {
+    animation: floatSlow 4s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  &:nth-child(3n) {
+    animation-delay: 1s;
   }
 }
 
@@ -86,7 +39,13 @@
   .Kv {
     .movie {
       width: 100%;
-      height: 100vh;
+      height: 80rem;
+      margin-bottom: 4rem;
+      @include sp {
+        height: 60rem;
+        margin-bottom: 0;
+      }
+
       video {
         object-fit: cover;
         width: 100%;
@@ -95,233 +54,281 @@
     }
   }
 
-  .Exhibition {
-    padding: 12rem 0 0;
+  .Tour {
+    margin-top: 8rem;
     @include sp {
-      padding: 6rem 0 0;
+      margin-top: 4rem;
     }
 
-    .Wrapper {
+    .content {
+      .title {
+        font-size: 3.8rem;
+        font-weight: bold;
+        color: var(--navy);
+        text-align: center;
+        @include sp {
+          font-size: 1.8rem;
+        }
+      }
+
+      .info {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 1rem;
+        @include sp {
+          font-size: 1.5rem;
+          span {
+            display: block;
+          }
+        }
+      }
+
+      .list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-top: 5rem;
+
+        @include sp {
+          grid-template-columns: 1fr;
+          margin-top: 2rem;
+        }
+      }
+    }
+  }
+
+  .Event {
+    margin-top: 8rem;
+    @include sp {
+    }
+
+    .subTitle {
+      height: 7.7rem;
+      @include sp {
+        height: 2.9rem;
+      }
+    }
+
+    .list {
       display: grid;
-      gap: 7rem;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 5rem;
+
+      @include sp {
+        grid-template-columns: 1fr;
+        margin-top: unset;
+      }
+    }
+
+    .obj1 {
+      position: absolute;
+      width: 43.8rem;
+      bottom: 15rem;
+      right: 6rem;
+
+      @include sp {
+        width: 22rem;
+        position: relative;
+        bottom: unset;
+        right: unset;
+      }
+    }
+  }
+
+  .EventFree {
+    margin-top: 11rem;
+    @include sp {
+      margin-top: 4rem;
+    }
+
+    .subTitle {
+      height: 12rem;
+      @include sp {
+        height: 4.1rem;
+      }
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+
+      @include sp {
+        grid-template-columns: 1fr;
+        margin-top: unset;
+
+        .Card-medium {
+          .body {
+            padding-bottom: unset;
+          }
+        }
+      }
+    }
+
+    .obj1 {
+      position: absolute;
+      width: 26.1rem;
+      bottom: 8rem;
+      right: 4rem;
+
+      @include sp {
+        width: 17.7rem;
+        position: relative;
+        bottom: unset;
+        right: unset;
+      }
+    }
+  }
+
+  .Goods {
+    margin-top: 17rem;
+    @include sp {
+      margin-top: 4rem;
+    }
+
+    .list {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+
+      @include sp {
+        grid-template-columns: 1fr;
+        margin-top: unset;
+
+        .Card-medium {
+          .body {
+            padding-bottom: unset;
+          }
+        }
+      }
+    }
+  }
+
+  .Other {
+    margin-top: 17rem;
+    @include sp {
+      margin-top: 9rem;
+    }
+
+    .content {
+      width: 100%;
+      display: grid;
+      gap: 8rem;
+      @include sp {
+        gap: 4rem;
+      }
+      .item {
+        display: grid;
+        gap: 3rem;
+        @include sp {
+          gap: 2rem;
+        }
+        .title {
+          background: var(--navy);
+          font-size: 2.4rem;
+          font-weight: bold;
+          text-align: center;
+          line-height: 1;
+          color: white;
+          border-radius: 100vh;
+          height: 5.4rem;
+          display: grid;
+          place-items: center;
+          width: 100%;
+          @include sp {
+            font-size: 1.4rem;
+            height: 3.3rem;
+          }
+        }
+        .list {
+          display: grid;
+          gap: 3rem;
+          @include sp {
+            gap: 2rem;
+          }
+
+          .category {
+            font-size: 2.4rem;
+            font-weight: bold;
+            text-align: center;
+            @include sp {
+              font-size: 1.4rem;
+            }
+          }
+          ul {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 3rem;
+
+            @include sp {
+              gap: 1.5rem;
+              margin-top: unset;
+              display: flex;
+              justify-content: center;
+              flex-wrap: wrap;
+
+              li {
+                height: 10rem;
+                img {
+                  width: 10rem;
+                  height: 10rem;
+                }
+              }
+            }
+          }
+        }
+
+        &-other {
+          .list {
+            margin-top: 2rem;
+            width: 100%;
+            ul {
+              grid-template-columns: 1fr 1fr;
+              gap: 3rem;
+              @include sp {
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+                li {
+                  height: auto;
+                  width: 100%;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .Map {
+    margin-top: 11rem;
+    @include sp {
+      margin-top: 6rem;
+    }
+
+    .content {
+      display: grid;
+      gap: 11rem;
       @include sp {
         gap: 4rem;
       }
     }
 
-    .image {
-      border: 1px solid #707070;
-      display: block;
-      aspect-ratio: 1000/570;
-      background: white;
-      overflow: hidden;
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100%;
-        background: white;
-        transform-origin: right center;
-        transform: scaleX(1);
-        z-index: 1;
-      }
-
-      &.reveal-mask {
-        &::after {
-          animation: exhibitionMaskSlide 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-      }
-
-      img {
-        object-fit: contain;
-        width: 100%;
-        height: 100%;
-      }
-    }
-
-    .navi {
-      position: relative;
-      @include sp {
-        display: grid;
-        place-items: center;
-        gap: 2rem;
-      }
-    }
-  }
-
-  .Archive {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6rem;
-    padding-top: 12rem;
-    @include sp {
-      padding-top: 6rem;
-      gap: 4rem;
-    }
-
-    .archive-swiper {
-      width: 100%;
-      overflow: hidden;
-      padding-bottom: 6rem;
-      position: relative;
-      @include sp {
-        padding-bottom: 5rem;
-      }
-    }
-
-    .archive-button-prev,
-    .archive-button-next {
-      width: 4rem;
-      height: 4rem;
-      border-radius: 50%;
-      color: gray;
-
-      &:after {
-        font-size: 1.6rem;
-      }
-
-      &:hover {
-        opacity: 0.7;
-      }
-
-      @include sp {
-        display: none;
-      }
-    }
-
-    .archive-pagination {
-      bottom: 0 !important;
-    }
-  }
-
-  // Swiperページネーションのスタイル
-  .archive-swiper {
-    .swiper-pagination-bullet {
-      width: 1rem;
-      height: 1rem;
-      background: #ccc;
-      opacity: 1;
-
-      &.swiper-pagination-bullet-active {
-        background: #000;
-      }
-    }
-
-    .list {
-      display: flex;
-
-      .swiper-slide {
-        width: 56rem;
-        flex-shrink: 0;
-
-        @include sp {
-          width: 29.5rem;
-        }
-
-        a {
-          display: block;
-          width: 100%;
-          overflow: hidden;
-          position: relative;
-
-          &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            transform-origin: right center;
-            transform: scaleX(1);
-          }
-
-          img {
-            width: 100%;
-            height: auto;
-            display: block;
-          }
-        }
-
-        &.slide-visible {
-          a::after {
-            animation: maskSlideLeft 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-          }
-        }
-      }
-    }
-  }
-
-  @keyframes maskSlideLeft {
-    0% {
-      transform: scaleX(1);
-    }
-    100% {
-      transform: scaleX(0);
-    }
-  }
-
-  @keyframes exhibitionMaskSlide {
-    0% {
-      transform: scaleX(1);
-    }
-    100% {
-      transform: scaleX(0);
-    }
-  }
-
-  .Nowhere {
-    padding: 12rem 0 0;
-    @include sp {
-      padding: 6rem 2rem;
-    }
-
-    .header {
-      text-align: center;
-
-      .title {
-        font-size: 3.2rem;
-        margin-top: 7rem;
-        @include sp {
-          font-size: 2.2rem;
-          margin-top: 3rem;
-        }
-      }
-
-      .text {
-        font-size: 1.4rem;
-        margin-top: 2rem;
-        span {
-          @include sp {
-            display: block;
-            text-align: left;
-            text-indent: -1em;
-            padding-left: 1rem;
-          }
-          &:before {
-            content: '※ ';
-          }
-        }
-        @include sp {
-          margin-top: 1rem;
-        }
-      }
-    }
-
     .map {
-      margin: 4rem 0;
+      margin: 8rem 0 0;
       width: 100%;
-      height: 65rem;
+      height: 75.3rem;
+      overflow: hidden;
       @include sp {
-        margin: 3rem 0;
+        margin: 3rem 0 0;
         width: 100vw;
-        margin-left: calc(-50vw + 50%);
-        height: 30rem;
+        height: unset;
       }
       iframe {
         object-fit: cover;
@@ -330,302 +337,246 @@
       }
     }
 
-    .info {
-      display: grid;
-      gap: 4rem;
+    .Card {
+      width: 136.6rem;
+      height: max-content;
+      padding: 7rem 10rem;
       @include sp {
-        gap: 2rem;
-        padding: 0 !important;
+        width: 33.5rem;
+        padding: 4rem 1rem;
       }
 
-      .lines {
-        text-align: center;
-        font-size: 2rem;
+      .heading {
+        height: 11.2rem;
         @include sp {
-          font-size: 1.4rem;
-        }
-      }
-      .list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5rem;
-        @include sp {
-          grid-template-columns: 1fr;
-          gap: 0.8rem;
-        }
-
-        li {
-          display: flex;
-          align-items: center;
-          gap: 1.5rem;
-          font-size: 2.4rem;
-          @include sp {
-            font-size: 1.6rem;
-            img {
-              width: 2.9rem;
-            }
-          }
-        }
-      }
-      small {
-        font-size: 1.3rem;
-        @include sp {
-          font-size: 1.4rem;
-        }
-        span {
-          @include sp {
-            display: block;
-            text-align: left;
-            text-indent: -1em;
-            padding-left: 1rem;
-          }
-          &:before {
-            content: '※ ';
-          }
-        }
-      }
-    }
-
-    .cardWrapper {
-      display: flex;
-      align-items: center;
-      gap: 4rem;
-      margin-top: 11rem;
-      position: relative;
-
-      @include sp {
-        margin-top: 4rem;
-        place-self: center;
-        padding: 0;
-      }
-
-      &:after {
-        content: '';
-        display: block;
-        position: absolute;
-        top: -10%;
-        left: 0;
-        width: 40rem;
-        height: 60rem;
-        background: center/cover no-repeat url('../../img/bg_object_1.svg');
-        z-index: -1;
-        animation: floatObject1 6s ease-in-out infinite;
-        @include sp {
-          display: none;
-        }
-      }
-    }
-  }
-
-  .NewsSec {
-    padding: 12rem 0 0;
-    @include sp {
-      padding: 0;
-    }
-  }
-
-  .ArtTrain {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6rem;
-    margin: 0 auto;
-    position: relative;
-
-    @include sp {
-      flex-direction: column-reverse;
-      padding: 0 2rem;
-      gap: 4rem;
-      width: 100%;
-    }
-
-    &:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: -20%;
-      right: 0;
-      width: 40rem;
-      height: 95rem;
-      background: center/cover no-repeat url('../../img/bg_object_2.svg');
-      z-index: -1;
-      animation: floatObject2 7s ease-in-out infinite;
-      @include sp {
-        display: none;
-      }
-    }
-
-    .texts {
-      .title {
-        img {
-          width: 61.4rem;
-          @include sp {
-            width: 30.2rem;
+          height: 6.2rem;
+          img {
             margin-inline: auto;
           }
         }
       }
-      .lead {
-        font-size: 3.6rem;
-        margin-top: 5rem;
-        font-weight: 600;
-        @include sp {
-          font-size: 2.5rem;
-          margin-top: 2rem;
-        }
-      }
-      .name {
+
+      .body {
         display: flex;
-        align-items: center;
-        gap: 1.4rem;
-        font-size: 2.6rem;
-        line-height: 1;
-        margin-top: 5rem;
+        justify-content: space-between;
+        gap: 9rem;
         @include sp {
-          flex-direction: column;
-          align-items: start;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          gap: 4rem;
+        }
+
+        .texts {
+          display: grid;
           gap: 1rem;
-          font-size: 1.5rem;
-          margin-top: 2rem;
+          height: min-content;
+
+          .title {
+            font-size: 2.7rem;
+            font-weight: bold;
+            margin-top: 8rem;
+            @include sp {
+              margin-top: 0;
+              font-size: 1.8rem;
+            }
+          }
+          .subTitle {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 2rem;
+            @include sp {
+              margin-top: 0;
+              font-size: 1.4rem;
+            }
+          }
+          .text {
+            font-size: 1.6rem;
+            @include sp {
+              font-size: 1.2rem;
+            }
+          }
         }
-        span {
-          font-size: 1.2rem;
-          line-height: 1;
-          border: 1px solid #707070;
-          color: #707070;
-          padding: 0.4rem 1.2rem;
-        }
-      }
-      .text {
-        margin-top: 3rem;
-        font-size: 1.8rem;
-        line-height: 2;
-        width: 47rem;
-        @include sp {
-          width: 100%;
-          font-size: 1.5rem;
+
+        .gmap {
+          border-radius: 2.7rem;
+          overflow: hidden;
+          height: 41.7rem;
+          @include sp {
+            width: 31.4rem;
+            height: 28rem;
+          }
         }
       }
     }
 
-    .image {
-      width: 63.7rem;
-      @include sp {
-        width: 100%;
-      }
-    }
-  }
-
-  .Concept {
-    padding: 12rem 0;
-    @include sp {
-      padding: 6rem 2rem 6rem;
-    }
-    .list {
+    .info {
       display: grid;
-      justify-content: center;
-      gap: 2rem;
-      grid-template-columns: repeat(3, 35.3rem);
-      margin: 4rem auto 0;
+      gap: 6rem;
       @include sp {
-        grid-template-columns: 1fr;
-        place-items: center;
-        margin: 2rem auto 0;
+        gap: 4rem;
       }
-      li {
-        display: grid;
-        place-items: center;
-        height: 37rem;
-        background: white;
-        box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.16);
-        border-radius: 1rem;
-        padding: 2.4rem;
+
+      .heading {
+        font-size: 3.4rem;
+        font-weight: bold;
+        color: var(--navy);
+        text-align: center;
         @include sp {
-          height: 30rem;
-        }
-        img {
-          height: 15.3rem;
-        }
-        .text {
-          align-self: baseline;
+          font-size: 2rem;
         }
       }
-    }
-    .image {
-      img {
-        height: 7.5rem;
+
+      .list {
+        width: 80rem;
+        margin: 0 auto;
+        @include sp {
+          width: 32.2rem;
+        }
+
+        li {
+          display: grid;
+          gap: 2rem;
+          border-bottom: 1px solid #d1d1d1;
+          padding-bottom: 4rem;
+          @include sp {
+            gap: 1rem;
+            padding-bottom: 2rem;
+          }
+
+          .title {
+            font-size: 2.4rem;
+            font-weight: bold;
+            @include sp {
+              font-size: 1.6rem;
+            }
+          }
+          .text {
+            padding-left: 2rem;
+            position: relative;
+            line-height: 2;
+            &:before {
+              content: '・';
+              position: absolute;
+              left: 0;
+              top: 0;
+            }
+            @include sp {
+              font-size: 1.2rem;
+            }
+          }
+        }
+
+        li + li {
+          margin-top: 4rem;
+          @include sp {
+            margin-top: 2rem;
+          }
+        }
       }
     }
   }
 
-  .Separator {
-    margin-bottom: 4rem;
-    overflow: hidden;
+  .Objects {
+    margin-top: 20rem;
+    height: 33rem;
     position: relative;
-    width: 100%;
-
-    .marquee {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
+    @include sp {
+      height: 28rem;
+      margin-top: 7rem;
     }
-
-    .marquee-content {
-      display: inline-flex;
-      gap: 10rem;
-      animation: marqueeScroll 20s linear infinite;
-
+    img {
+      position: absolute;
+    }
+    .obj1 {
+      width: 35.6rem;
+      top: 2rem;
+      left: 4.2rem;
       @include sp {
-        gap: 2rem;
-        animation: marqueeScroll 8s linear infinite;
-      }
-
-      img {
-        height: auto;
-        width: auto;
-        display: inline-block;
+        width: 16.1rem;
+        left: 2.6rem;
       }
     }
-  }
-
-  @keyframes marqueeScroll {
-    0% {
-      transform: translateX(0);
+    .obj2 {
+      width: 9.8rem;
+      top: 0;
+      left: 43rem;
+      @include sp {
+        width: 4.4rem;
+        left: 20.2rem;
+      }
     }
-    100% {
-      transform: translateX(-50%);
+    .obj3 {
+      width: 5.9rem;
+      bottom: 4rem;
+      left: 57.7rem;
+      @include sp {
+        width: 2.8rem;
+        top: 15rem;
+        left: 16.8rem;
+        bottom: unset;
+      }
     }
-  }
-
-  @keyframes floatObject1 {
-    0%,
-    100% {
-      transform: translate(0, 0);
+    .obj4 {
+      width: 17.7rem;
+      top: 0;
+      left: 59rem;
+      @include sp {
+        width: 8rem;
+        left: 27.4rem;
+      }
     }
-    25% {
-      transform: translate(0.8rem, -1rem);
+    .obj5 {
+      width: 22.3rem;
+      bottom: 5rem;
+      left: 74.5rem;
+      @include sp {
+        width: 10.8rem;
+        bottom: unset;
+        top: 7.3rem;
+        left: 19.7rem;
+      }
     }
-    50% {
-      transform: translate(-0.5rem, -0.8rem);
+    .obj6 {
+      width: 20.2rem;
+      top: 0;
+      left: 93.1rem;
+      @include sp {
+        width: 8.7rem;
+        bottom: 5rem;
+        left: 4.6rem;
+        top: unset;
+      }
     }
-    75% {
-      transform: translate(1rem, 0.5rem);
+    .obj7 {
+      width: 15.3rem;
+      bottom: 0;
+      left: 118.2rem;
+      @include sp {
+        width: 6.6rem;
+        bottom: 0;
+        left: 15.5rem;
+      }
     }
-  }
-
-  @keyframes floatObject2 {
-    0%,
-    100% {
-      transform: translate(0, 0);
+    .obj8 {
+      width: 22.9rem;
+      top: 0;
+      left: 135.2rem;
+      @include sp {
+        width: 9.9rem;
+        bottom: 7rem;
+        top: unset;
+        left: 22.9rem;
+      }
     }
-    25% {
-      transform: translate(-1rem, 0.8rem);
-    }
-    50% {
-      transform: translate(0.5rem, -1.3rem);
-    }
-    75% {
-      transform: translate(-0.8rem, -0.5rem);
+    .obj9 {
+      width: 8rem;
+      bottom: 0;
+      left: 144.4rem;
+      @include sp {
+        width: 3.4rem;
+        left: 26.9rem;
+      }
     }
   }
 }

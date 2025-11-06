@@ -1,7 +1,7 @@
 @use '../foundation/breakPoint.scss' as *;
 
 .Footer {
-  padding: 8rem 2rem;
+  padding: 8rem 0;
   background: var(--primary);
   color: white;
   position: relative;
@@ -14,38 +14,63 @@
     display: grid;
     place-items: center;
     position: relative;
-    gap: 7rem;
-    @include sp {
-      gap: 6rem;
-    }
   }
 
-  .hiroshima {
-    width: 27rem;
+  .logo {
+    display: grid;
+    place-items: center;
+    img {
+      width: 59.5rem;
+      @include sp {
+        width: 25.6rem;
+      }
+    }
   }
 
   .links {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    margin-top: 7rem;
+    border-top: 1px solid var(--navy);
+    border-bottom: 1px solid var(--navy);
+    width: 100%;
     gap: 5rem;
+    padding: 1rem;
     @include sp {
       flex-direction: column;
+      border-top: unset;
+      border-bottom: unset;
+      gap: 2rem;
+      margin-top: 4rem;
     }
 
     a {
-      font-size: 1.7rem;
+      font-size: 2rem;
       @include sp {
         font-size: 1.6rem;
       }
     }
   }
 
-  .logo {
-    width: 138rem;
-    margin-top: 2rem;
+  .tobu {
+    margin-top: 12rem;
+    @include sp {
+      margin-top: 8rem;
+    }
+    img {
+      width: 11rem;
+      mix-blend-mode: multiply;
+    }
   }
 
   small {
-    font-size: 1.7rem;
-    color: #b8b8b8;
+    font-size: 1.2rem;
+    color: var(--text);
+    font-family: 'Oswald', 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    margin-top: 4rem;
   }
 }

@@ -1,50 +1,8 @@
 import $ from 'jquery';
-import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import ScrollReveal from 'scrollreveal';
-
-// ローディング画面 - トップページのみ
-if (document.querySelector('.Loading')) {
-  const loading = document.querySelector('.Loading');
-  const logo = document.querySelector('.Loading_logo');
-
-  // DOMContentLoadedで開始(iframeの影響を受けない)
-  const startLoading = () => {
-    console.log('Loading animation started'); // デバッグ用
-
-    // ロゴを左から白で塗る
-    setTimeout(() => {
-      logo.classList.add('fill');
-      console.log('Logo fill started'); // デバッグ用
-    }, 300);
-
-    // ロゴが塗り終わったら少し間を開けてロゴが消え始める
-    setTimeout(() => {
-      logo.classList.add('slide-up');
-      console.log('Logo slide-up started'); // デバッグ用
-    }, 1600); // 300ms + 800ms(fill) + 500ms(間)
-
-    // ロゴが少し消えてから背景を上に持ち上げる
-    setTimeout(() => {
-      loading.classList.add('hide');
-      console.log('Loading hide started'); // デバッグ用
-    }, 1875); // 1600ms + 275ms(ロゴが少し消える時間)
-
-    // ローディング画面を完全に削除
-    setTimeout(() => {
-      loading.remove();
-      console.log('Loading removed'); // デバッグ用
-    }, 2675); // 1875ms + 800ms(背景スライド)
-  };
-
-  console.log('Loading script loaded, readyState:', document.readyState); // デバッグ用
-
-  // すぐに開始(ES moduleは常にdeferされるため、DOMは既に準備完了している)
-  startLoading();
-}
 
 // ハンバーガーメニューの実装
 $(document).ready(function () {
@@ -103,159 +61,154 @@ $(document).ready(function () {
     }
   });
 
-  // モーダル機能
-  $('.js-modal').on('click', function () {
-    // 同じli内のfigure.imageのimg要素を取得
-    const $li = $(this).closest('li');
-    const $img = $li.find('figure.image img');
-    const imgSrc = $img.attr('src');
-    const imgAlt = $img.attr('alt');
-
-    if (imgSrc) {
-      // モーダルに画像をセット
-      $('#modal-image').attr('src', imgSrc).attr('alt', imgAlt);
-      $('#image-modal').addClass('is-open');
-
-      // 背景スクロールを無効化（簡略版）
-      $('body').css('overflow', 'hidden');
-    }
+  // ScrollReveal の設定
+  ScrollReveal().reveal('.reveal', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false,
+    viewFactor: 0.2,
+    interval: 100
   });
 
-  // モーダルを閉じる
-  $('.modal-close, .modal').on('click', function (e) {
-    if (e.target === this) {
-      $('#image-modal').removeClass('is-open');
-
-      // 背景スクロールを復元
-      $('body').css('overflow', '');
-    }
+  // セクションタイトル
+  ScrollReveal().reveal('.SectionTitle', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
   });
 
-  // ESCキーでモーダルを閉じる
-  $(document).on('keydown', function (e) {
-    if (e.key === 'Escape' && $('#image-modal').hasClass('is-open')) {
-      $('#image-modal').removeClass('is-open');
-      $('body').css('overflow', '');
-    }
+  // カード要素
+  ScrollReveal().reveal('.Card', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false,
+    viewFactor: 0.2,
+    interval: 100
   });
 
-  // Archiveカルーセル
-  let archiveSwiper;
-  if (document.querySelector('.archive-swiper')) {
-    archiveSwiper = new Swiper('.archive-swiper', {
-      modules: [Navigation, Pagination],
-      loop: true,
-      slidesPerView: 'auto',
-      spaceBetween: 20,
-      freeMode: true,
-      grabCursor: true,
-      mousewheel: {
-        forceToAxis: true
-      },
-      navigation: {
-        nextEl: '.archive-button-next',
-        prevEl: '.archive-button-prev'
-      },
-      pagination: {
-        el: '.archive-pagination',
-        clickable: true
-      },
-      breakpoints: {
-        769: {
-          spaceBetween: 20,
-          centeredSlides: false
-        },
-        0: {
-          spaceBetween: 20,
-          centeredSlides: true,
-          initialSlide: 0
-        }
-      }
-    });
-  }
+  // obj系の画像 - ポップアップ効果
+  ScrollReveal().reveal('[class*="obj"]', {
+    duration: 600,
+    scale: 0.3,
+    opacity: 0,
+    easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
+    reset: false,
+    viewFactor: 0.1,
+    interval: 150,
+    delay: 300
+  });
 
-  // ScrollReveal - トップページのみ
-  if (document.querySelector('.Top')) {
-    const sr = ScrollReveal({
-      origin: 'bottom',
-      distance: '60px',
-      duration: 500,
-      delay: 100,
-      easing: 'ease-out',
-      reset: false,
-      mobile: true
-    });
+  // 出店ブース関連の要素
+  ScrollReveal().reveal('.item-booth .title, .item-other .title', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
 
-    // セクションタイトル
-    sr.reveal('.SectionTitle', {
-      delay: 100
-    });
+  ScrollReveal().reveal('.item-booth .list, .item-other .list', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false,
+    interval: 200
+  });
 
-    // Exhibition セクション
-    sr.reveal('.Exhibition .image', {
-      delay: 200,
-      beforeReveal: el => {
-        el.classList.add('reveal-mask');
-      }
-    });
-    sr.reveal('.Exhibition .navi', {
-      delay: 300
-    });
+  ScrollReveal().reveal('.item-booth .category', {
+    duration: 800,
+    distance: '20px',
+    origin: 'left',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
 
-    // Archive セクション（Swiper以外）
-    sr.reveal('.Archive .archive-swiper', {
-      delay: 200,
-      beforeReveal: () => {
-        // Swiperのスライドを順番にアニメーション
-        if (archiveSwiper && archiveSwiper.slides) {
-          archiveSwiper.slides.forEach((slide, index) => {
-            setTimeout(() => {
-              slide.classList.add('slide-visible');
-            }, index * 300); // 150msずつ遅延
-          });
-        }
-      }
-    });
-    sr.reveal('.Archive .Button', {
-      delay: 300
-    });
+  ScrollReveal().reveal('.item-booth ul li', {
+    duration: 600,
+    scale: 0.9,
+    opacity: 0,
+    easing: 'ease-out',
+    reset: false,
+    interval: 80
+  });
 
-    // Nowhere セクション
-    sr.reveal('.Nowhere .header', {
-      delay: 100
-    });
-    sr.reveal('.Nowhere .map', {
-      delay: 200
-    });
-    sr.reveal('.Nowhere .info', {
-      delay: 300
-    });
-    sr.reveal('.Nowhere .Card', {
-      delay: 400
-    });
+  // マップセクション
+  ScrollReveal().reveal('.Map .map', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
 
-    // News セクション
-    sr.reveal('.NewsList .list li', {
-      interval: 150
-    });
-    sr.reveal('.NewsSec .Button', {
-      delay: 300
-    });
+  ScrollReveal().reveal('.Map .access', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false,
+    delay: 200
+  });
 
-    // ArtTrain セクション
-    sr.reveal('.ArtTrain .texts', {
-      origin: 'left',
-      delay: 200
-    });
-    sr.reveal('.ArtTrain .image', {
-      origin: 'right',
-      delay: 300
-    });
+  ScrollReveal().reveal('.Map .info', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false,
+    delay: 400
+  });
 
-    // Concept セクション
-    sr.reveal('.Concept .list li', {
-      interval: 200,
-      delay: 200
-    });
-  }
+  // サブタイトル
+  ScrollReveal().reveal('.subTitle', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
+
+  // 異なるアニメーションパターン
+  ScrollReveal().reveal('.reveal-left', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'left',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
+
+  ScrollReveal().reveal('.reveal-right', {
+    duration: 1000,
+    distance: '50px',
+    origin: 'right',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
+
+  ScrollReveal().reveal('.reveal-fade', {
+    duration: 1000,
+    distance: '0px',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false
+  });
 });

@@ -3,11 +3,18 @@
 .SectionTitle {
   display: grid;
   place-items: center;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--navy);
 
   @include sp {
-    img {
-      height: 3rem;
+    font-size: 1.4rem;
+  }
+
+  img {
+    height: 14.3rem;
+    @include sp {
+      height: 7.2rem;
     }
   }
 }

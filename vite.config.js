@@ -47,17 +47,7 @@ export default defineConfig({
         manualChunks: undefined
       },
       input: {
-        index: resolve(__dirname, root, 'index.html'),
-        exhibition: resolve(__dirname, root, 'exhibition.html'),
-        gallery: resolve(__dirname, root, 'gallery.html'),
-        gallery_1: resolve(__dirname, root, 'gallery_1.html'),
-        gallery_2: resolve(__dirname, root, 'gallery_2.html'),
-        gallery_3: resolve(__dirname, root, 'gallery_3.html'),
-        gallery_4: resolve(__dirname, root, 'gallery_4.html'),
-        gallery_5: resolve(__dirname, root, 'gallery_5.html'),
-        gallery_6: resolve(__dirname, root, 'gallery_6.html'),
-        news: resolve(__dirname, root, 'news.html'),
-        news_detail: resolve(__dirname, root, 'news_detail.html')
+        index: resolve(__dirname, root, 'index.html')
       }
     }
   },

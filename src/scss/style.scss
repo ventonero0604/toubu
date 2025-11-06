@@ -15,14 +15,9 @@
 @use './ui/header.scss';
 @use './ui/footer.scss';
 @use './ui/card.scss';
-@use './ui/newsList.scss';
-@use './ui/breadCrumb.scss';
 
 /* page */
 @use './page/top.scss';
-@use './page/pages.scss';
-@use './page/gallery.scss';
-@use './page/newsDetail.scss';
 
 /* tailwind */
 @tailwind base;

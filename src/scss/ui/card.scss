@@ -4,60 +4,199 @@
   background: white;
   box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.16);
   border-radius: 1.6;
-  padding: 6rem 2rem;
   border-radius: 2rem;
   display: grid;
-  gap: 4rem;
-  width: 100rem;
   margin-inline: auto;
-  position: relative;
-  z-index: 2;
+  margin-bottom: 0.6rem;
+  overflow: hidden;
 
-  @include sp {
-    width: 33.5rem;
-    padding-block: 4rem;
-  }
-
-  .content {
-    display: flex;
-    gap: 4rem;
-    align-items: center;
-    justify-content: center;
-
+  &-large {
+    width: 105rem;
+    display: grid;
+    place-items: center;
+    gap: 2rem;
+    padding: 6.8rem 2rem;
     @include sp {
-      flex-direction: column;
-      .image {
-        width: 10.6rem;
+      width: 33.5rem;
+      padding: 4.5rem 2rem;
+    }
+
+    .logo {
+      width: 76.2rem;
+      @include sp {
+        width: 27rem;
       }
     }
 
-    .texts {
-      width: 48.5rem;
-      font-size: 2rem;
-      @include sp {
-        width: 29.5rem;
-        font-size: 1.8rem;
-        img {
-          height: 3rem;
-          margin-inline: auto;
+    .date {
+      img {
+        width: 44rem;
+        @include sp {
+          width: 25.6rem;
         }
       }
-
-      .lead {
-        font-weight: 500;
-        font-size: 3.2rem;
-        margin-bottom: 2rem;
+      small {
+        color: var(--navy);
+        font-size: 1.4rem;
+        display: block;
+        text-align: right;
         @include sp {
-          font-size: 2.5rem;
           text-align: center;
-          margin-top: 1rem;
+          font-size: 1.3rem;
+        }
+      }
+    }
+
+    .place {
+      color: var(--navy);
+      font-size: 1.7rem;
+      font-weight: bold;
+      .pc {
+        display: inline;
+      }
+      @include sp {
+        font-size: 1.5rem;
+        text-align: center;
+        .pc {
+          display: none;
+        }
+      }
+    }
+
+    .title {
+      font-size: 3.2rem;
+      font-weight: bold;
+      margin-top: 1rem;
+      @include sp {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+    }
+
+    .text {
+      width: 65rem;
+      line-height: 1.8;
+      @include sp {
+        width: 100%;
+        font-size: 1.2rem;
+      }
+
+      span {
+        display: block;
+        position: relative;
+        padding-left: 1.5rem;
+        &:before {
+          position: absolute;
+          left: 0;
+          content: '・';
+          margin-right: 0.4rem;
         }
       }
     }
   }
-  @include sp {
-    .Button {
-      width: 29.5rem;
+
+  &-medium {
+    padding-bottom: 4rem;
+    @include sp {
+      padding-bottom: 3rem;
+    }
+
+    .header {
+      height: 3.2rem;
+      height: min-content;
+      position: relative;
+      @include sp {
+        height: 20rem;
+      }
+      .image {
+        width: 100%;
+        height: 100%;
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .tab {
+        position: absolute;
+        bottom: 0;
+        left: 2rem;
+        background: white;
+        width: 19rem;
+        height: 7.7rem;
+        border-radius: 1.6rem 1.6rem 0 0;
+        overflow: hidden;
+        padding: 0.5rem 0.5rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include sp {
+          left: 1rem;
+          width: 11.9rem;
+          height: 4.8rem;
+        }
+        img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .body {
+      padding: 2rem;
+      display: grid;
+      gap: 1rem;
+    }
+  }
+
+  &_title {
+    font-size: 2.4rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    @include sp {
+      font-size: 1.8rem;
+    }
+  }
+
+  &_subTitle {
+    font-size: 1.8rem;
+    font-weight: bold;
+    @include sp {
+      font-size: 1.6rem;
+    }
+  }
+
+  &_text {
+    line-height: 1.8;
+    min-height: 4rem;
+    height: max-content;
+    @include sp {
+      font-size: 1.2rem;
+    }
+  }
+
+  &_time {
+    font-size: 1.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    line-height: 1.5;
+    img {
+      margin-top: 0.4rem;
+      display: block;
+      height: 1.5rem !important;
+      width: 1.5rem !important;
+    }
+    @include sp {
+      font-size: 1.6rem;
+    }
+  }
+
+  .Button {
+    margin-top: 1rem;
+    @include sp {
+      margin-top: unset;
     }
   }
 }

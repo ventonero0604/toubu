@@ -1,5 +1,15 @@
+@use '../foundation/breakPoint.scss' as *;
+
 .Wrapper {
-  max-width: 104rem;
+  max-width: 113rem;
   margin: 0 auto;
   padding: 0 2rem;
+  display: grid;
+  place-items: center;
+  gap: 5rem;
+  position: relative;
+
+  @include sp {
+    gap: 3rem;
+  }
 }
