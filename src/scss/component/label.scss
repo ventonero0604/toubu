@@ -28,5 +28,17 @@
       border: 1px solid var(--navy);
       color: var(--navy);
     }
+
+    &-redFill {
+      border: 1px solid var(--red);
+      background: var(--red);
+      color: white;
+    }
+
+    &-navyFill {
+      border: 1px solid var(--navy);
+      background: var(--navy);
+      color: white;
+    }
   }
 }

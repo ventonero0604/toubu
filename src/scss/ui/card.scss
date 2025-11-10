@@ -239,6 +239,12 @@
         @include sp {
           grid-template-columns: 1fr;
         }
+        p {
+          margin-right: 1rem;
+          @include sp {
+            margin-right: unset;
+          }
+        }
         span {
           font-size: 1.4rem;
         }
