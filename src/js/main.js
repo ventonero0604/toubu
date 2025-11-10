@@ -165,14 +165,27 @@ $(document).ready(function () {
     delay: 200
   });
 
-  ScrollReveal().reveal('.Map .info', {
+  // マップセクションの注意事項 - 見出し
+  ScrollReveal().reveal('.Map .info .heading', {
+    duration: 1000,
+    distance: '30px',
+    origin: 'bottom',
+    opacity: 0,
+    easing: 'ease-in-out',
+    reset: false,
+    delay: 400
+  });
+
+  // マップセクションの注意事項 - 各項目
+  ScrollReveal().reveal('.Map .info .list li', {
     duration: 1000,
     distance: '50px',
     origin: 'bottom',
     opacity: 0,
     easing: 'ease-in-out',
     reset: false,
-    delay: 400
+    interval: 150,
+    delay: 500
   });
 
   // サブタイトル

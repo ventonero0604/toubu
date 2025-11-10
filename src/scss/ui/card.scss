@@ -96,13 +96,16 @@
   }
 
   &-medium {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+    width: 100%;
     padding-bottom: 4rem;
     @include sp {
       padding-bottom: 3rem;
     }
 
     .header {
-      height: 3.2rem;
       height: min-content;
       position: relative;
       @include sp {
@@ -147,6 +150,41 @@
       padding: 2rem;
       display: grid;
       gap: 1rem;
+      align-content: start;
+    }
+
+    .Button {
+      margin: 0 auto;
+    }
+  }
+
+  &-small {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100%;
+
+    .header {
+      height: min-content;
+      position: relative;
+      @include sp {
+        height: 20rem;
+      }
+      .image {
+        width: 100%;
+        height: 100%;
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+
+    .body {
+      padding: 2rem;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
     }
   }
 
@@ -183,13 +221,45 @@
     gap: 0.8rem;
     line-height: 1.5;
     img {
-      margin-top: 0.4rem;
+      margin-top: 0.6rem;
       display: block;
       height: 1.5rem !important;
       width: 1.5rem !important;
+      @include sp {
+        margin-top: 0.5rem;
+      }
     }
     @include sp {
       font-size: 1.6rem;
+    }
+    &-table {
+      .table {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        @include sp {
+          grid-template-columns: 1fr;
+        }
+        span {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  &_attention {
+    color: var(--red);
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  &_link {
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: var(--navy);
+    font-size: 1.8rem;
+    @include sp {
+      font-size: 1.2rem;
     }
   }
 
