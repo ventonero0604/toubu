@@ -61,8 +61,47 @@ $(document).ready(function () {
     }
   });
 
+  // モーダルの実装（data-modal -> data-modal-content 対応）
+  $('.js-modal').on('click', function (e) {
+    e.preventDefault();
+    scrollTop = $(window).scrollTop();
+
+    const modalId = $(this).data('modal'); // 1,2,3 など
+    const $target = $(`.Modal[data-modal-content="${modalId}"]`);
+    if (!$target.length) return;
+
+    // 必要なら他のモーダルは閉じる
+    $('.Modal.is-open').not($target).removeClass('is-open');
+
+    $target.addClass('is-open');
+    $('body').css('--scroll-top', `-${scrollTop}px`).addClass('no-scroll');
+  });
+
+  // 共通のモーダル閉鎖処理
+  function closeModal($modal) {
+    if (!$modal || !$modal.length) return;
+    $modal.removeClass('is-open');
+    $('body').removeClass('no-scroll').css('--scroll-top', '');
+    $(window).scrollTop(scrollTop);
+  }
+
+  // オーバーレイ（モーダル本体）をクリックしたらそのモーダルのみ閉じる
+  $(document).on('click', '.Modal', function (e) {
+    if (e.target === this) {
+      closeModal($(this));
+    }
+  });
+
+  // モーダル内の閉じるボタン（.js-modal-close）でその親モーダルのみ閉じる
+  $(document).on('click', '.js-modal-close', function (e) {
+    e.preventDefault();
+    const $modal = $(this).closest('.Modal');
+    closeModal($modal);
+  });
+
   // ScrollReveal の設定
-  ScrollReveal().reveal('.reveal', {
+  const sr = ScrollReveal();
+  sr.reveal('.reveal', {
     duration: 1000,
     distance: '50px',
     origin: 'bottom',
@@ -74,14 +113,20 @@ $(document).ready(function () {
   });
 
   // セクションタイトル
-  ScrollReveal().reveal('.SectionTitle', {
-    duration: 1000,
-    distance: '30px',
-    origin: 'bottom',
-    opacity: 0,
-    easing: 'ease-in-out',
-    reset: false
-  });
+  // モーダル内の .SectionTitle は除外して適用
+  const sectionTitles = Array.from(document.querySelectorAll('.SectionTitle')).filter(
+    el => !el.closest('.Modal')
+  );
+  if (sectionTitles.length) {
+    sr.reveal(sectionTitles, {
+      duration: 1000,
+      distance: '30px',
+      origin: 'bottom',
+      opacity: 0,
+      easing: 'ease-in-out',
+      reset: false
+    });
+  }
 
   // カード要素
   ScrollReveal().reveal('.Card', {

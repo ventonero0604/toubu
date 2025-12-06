@@ -275,4 +275,23 @@
       margin-top: unset;
     }
   }
+
+  &_buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    @include sp {
+      grid-template-columns: 1fr;
+    }
+    .Button {
+      padding-inline: 2rem;
+      width: 100%;
+      justify-content: center;
+      &:after {
+        display: none;
+      }
+    }
+  }
 }

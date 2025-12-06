@@ -2,7 +2,6 @@
 @use './pxvw.scss' as *;
 
 html {
-  scroll-behavior: smooth;
   font-size: 62.5%;
 
   @include sp {
@@ -29,6 +28,10 @@ body {
   @include sp {
     background: center / contain repeat-y url('../../img/bg_sp.svg') #f7f7f7;
     background-position-y: 60rem;
+  }
+
+  &.lp {
+    background: unset;
   }
 }
 

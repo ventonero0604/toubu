@@ -73,4 +73,30 @@
     font-weight: 300;
     margin-top: 4rem;
   }
+
+  &-lp {
+    padding: 7rem 2rem;
+
+    .logo {
+      img {
+        width: 25.6rem;
+      }
+    }
+
+    .links {
+      flex-direction: column;
+      border-top: unset;
+      border-bottom: unset;
+      gap: 2rem;
+      margin-top: 4rem;
+
+      a {
+        font-size: 1.6rem;
+      }
+    }
+
+    .tobu {
+      margin-top: 8rem;
+    }
+  }
 }

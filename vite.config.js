@@ -47,7 +47,8 @@ export default defineConfig({
         manualChunks: undefined
       },
       input: {
-        index: resolve(__dirname, root, 'index.html')
+        index: resolve(__dirname, root, 'index.html'),
+        lp: resolve(__dirname, root, 'lp.html')
       }
     }
   },

@@ -214,4 +214,47 @@
       }
     }
   }
+
+  &-lp {
+    padding: 2rem;
+    width: 37.5rem;
+    margin: 0 auto;
+    border-left: 1px solid #707070;
+    border-right: 1px solid #707070;
+    border-top: 1px solid #707070;
+    position: relative;
+
+    .logo {
+      img {
+        height: 2.4rem;
+      }
+    }
+
+    .content {
+      .links {
+        display: none;
+      }
+    }
+
+    .expand {
+      .wrapper {
+        .details {
+          li {
+            .title {
+              width: 10rem;
+            }
+          }
+          flex-wrap: nowrap;
+          height: auto;
+        }
+      }
+    }
+    .menu {
+      top: 2.3rem;
+      position: absolute;
+      @include pc {
+        display: none;
+      }
+    }
+  }
 }

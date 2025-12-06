@@ -10,6 +10,7 @@
 @use './component/sectionTitle.scss';
 @use './component/button.scss';
 @use './component/label.scss';
+@use './component/modal.scss';
 
 /* ui */
 @use './ui/header.scss';
@@ -18,6 +19,7 @@
 
 /* page */
 @use './page/top.scss';
+@use './page/lp.scss';
 
 /* tailwind */
 @tailwind base;
