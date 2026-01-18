@@ -48,7 +48,8 @@ export default defineConfig({
       },
       input: {
         index: resolve(__dirname, root, 'index.html'),
-        lp: resolve(__dirname, root, 'lp.html')
+        lp: resolve(__dirname, root, 'lp.html'),
+        end: resolve(__dirname, root, 'end.html')
       }
     }
   },

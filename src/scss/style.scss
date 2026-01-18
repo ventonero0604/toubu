@@ -11,6 +11,7 @@
 @use './component/button.scss';
 @use './component/label.scss';
 @use './component/modal.scss';
+@use './component/fixedBanner.scss';
 
 /* ui */
 @use './ui/header.scss';
@@ -20,6 +21,7 @@
 /* page */
 @use './page/top.scss';
 @use './page/lp.scss';
+@use './page/end.scss';
 
 /* tailwind */
 @tailwind base;

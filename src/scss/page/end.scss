@@ -1,0 +1,24 @@
+@use '../foundation/breakPoint.scss' as *;
+
+.End {
+  .Kv {
+    display: grid;
+    place-items: center;
+    padding: 25rem 2rem 0;
+    @include sp {
+      padding: 8rem 2rem 0;
+      figure {
+        width: 100%;
+      }
+      img {
+        width: 100%;
+      }
+    }
+  }
+
+  .Footer-lp {
+    @include sp {
+      padding-top: 0;
+    }
+  }
+}
